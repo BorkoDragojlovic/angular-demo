@@ -1,0 +1,13 @@
+<!--div *ngIf='appStatus'>{{appTitle}} Tutorialspoint </div>
+<div *ngFor='let lst of appList'>
+    <ul>
+        <li>{{lst.ID}}</li>
+        <li>{{lst.Name}}</li>
+        <img [src]='lst.url'>
+    </ul>
+</div-->
+<ul>
+    <li><a [routerLink]="['/Product']">Product</a></li>
+    <li><a [routerLink]="['/sales/customer-list']">Customer List</a></li>
+</ul>
+<router-outlet></router-outlet>

@@ -1,0 +1,22 @@
+<div>Test customer </div>
+<table class="table">
+    <tr>
+        <th>#</th>
+        <th>First Name</th>
+        <th>Last Name</th> 
+    </tr>
+    <tr *ngFor="let customer of customerList" (click)="selectCustomer(customer)"
+        [style.background-color] = "customerEdit.id == customer.id ? 'cyan' : ''">
+        <td>{{customer.id}}</td>
+        <td>{{customer.firstName}}</td>
+        <td>{{customer.lastName}}</td>
+    </tr>
+</table>
+
+<form>
+  First name: <input type="text" [(ngModel)]="customerEdit.firstName" name="firstName"><br>
+  Last name: <input type="text" [(ngModel)]="customerEdit.lastName" name="lastName"><br>
+  <button (click)="saveCustomer(customerEdit)">Add customer</button>
+  <button (click)="removeCustomer(customerEdit.id)">Remove</button>
+</form>
+
