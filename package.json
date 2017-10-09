@@ -24,8 +24,8 @@
     "author": "",
     "license": "MIT",
     "dependencies": {
-        "@types/jquery": "^2.0.0 || ^3.0.0",
-        "jquery": "^2.0.0 || ^3.0.0",
+        "@types/jquery": "2.0.34",
+        "jquery": "~3.2.1",
         "@angular/common": "~4.3.4",
         "@angular/compiler": "~4.3.4",
         "@angular/core": "~4.3.4",

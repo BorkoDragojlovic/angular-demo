@@ -7,7 +7,7 @@ import { projection } from 'devextreme/viz/vector_map/projection';
 import { FeatureCollection, FloorPlanService } from './floor-plan.service';
 
 @Component({
-    selector: 'my-app',
+    selector: 'mym-app',
     providers: [ FloorPlanService ],
     templateUrl: './floor-plan.component.html',
     styleUrls: ['./floor-plan.component.css']
@@ -38,4 +38,17 @@ export class FloorPlanComponent {
                 text: "Square: " + arg.attribute("square") + " ft&#178"
             };
     }
+
+    /*customizeLayers(elements) {
+        elements.forEach((element) => {
+            let room = this.roomsData[element.attribute("name")];
+            if(room) {
+                element.applySettings({
+                    color: "#000000",
+                    hoveredColor: "#e0e000",
+                    selectedColor: "#008f00"
+                });
+            };
+        });
+    }*/
 }

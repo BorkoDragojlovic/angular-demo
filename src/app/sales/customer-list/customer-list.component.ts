@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CustomerService } from '../services/customer.service'
 import { Customer } from '../shared/customer.model';
+import { FloorPlanComponent } from '../../floor-plan/floor-plan.component'
 @Component ({
    selector: 'my-app',
    templateUrl: './customer-list.component.html',
