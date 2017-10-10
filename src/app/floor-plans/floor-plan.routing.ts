@@ -1,5 +1,5 @@
 import { RouterModule, Routes } from '@angular/router';
-import { FloorPlanComponent } from './floor-plan.component';
+import { FloorPlanComponent } from './floor-plan/floor-plan.component';
 
 const floorPlanRoutes: Routes = [
   { path: 'floor-plan', component:FloorPlanComponent }

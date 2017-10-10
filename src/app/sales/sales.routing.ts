@@ -4,9 +4,12 @@ import { CustomerList } from './customer-list/customer-list.component';
 const salesRoutes: Routes = [
   { path: 'sales',
     children: [
-      { path: 'customer-list', component: CustomerList },
-      //{ path: ':id', component: User }
+      { path: 'customer-list', component: CustomerList }
     ]
+  },
+  { path: '',
+    redirectTo: '/sales/customer-list',
+    pathMatch: 'full'
   }
 ];
 
