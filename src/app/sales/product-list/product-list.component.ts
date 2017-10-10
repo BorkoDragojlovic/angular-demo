@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IProduct } from '../shared/product.interface';
+import { Product } from '../shared/product.model';
 import { ProductService } from '../services/products.service';
 //import { appService } from './app.service';
 import { Http, Response } from '@angular/http';
@@ -8,17 +8,17 @@ import 'rxjs/add/operator/map';
 
 @Component({
     selector: 'my-app',
-    templateUrl: 'Product',
+    templateUrl: './product-list.component.html',
     providers: [ProductService]
 })
 
-export class ProductComponent {
-    iproducts: IProduct[];
+export class ProductList {
+    productList: Product[];
     constructor(private productService: ProductService) {
     }
 
     ngOnInit(): void {
-        this.productService.getproducts()
-            .subscribe(iproducts => this.iproducts = iproducts);
+        this.productService.getAll()
+            .then(productList => this.productList = productList);
     }
 }

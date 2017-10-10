@@ -1,12 +1,13 @@
-import { NgModule }      from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { SalesRouting} from './sales.routing';
-import { CustomerList} from './customer-list/customer-list.component';
-import {FloorPlanModule} from '../floor-plans/floor-plan.module'
+import { SalesRouting } from './sales.routing';
+import { CustomerList } from './customer-list/customer-list.component';
+import { ProductList } from './product-list/product-list.component'
+import { FloorPlanModule } from '../floor-plans/floor-plan.module'
 
 @NgModule({
-  imports:      [ BrowserModule, FormsModule, SalesRouting, FloorPlanModule],
-  declarations: [ CustomerList ]
+  imports: [BrowserModule, FormsModule, SalesRouting, FloorPlanModule],
+  declarations: [CustomerList, ProductList]
 })
 export class SalesModule { };

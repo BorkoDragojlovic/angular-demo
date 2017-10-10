@@ -11,26 +11,30 @@ import { FloorPlanComponent } from '../../floor-plans/floor-plan/floor-plan.comp
 export class CustomerList {
     constructor(private customerService: CustomerService) {
     }
-    customerEdit: ICustomer = new Customer();
-    selectedCustomer: ICustomer;
-    customerList: ICustomer[];
+    customerEdit: Customer = new Customer();
+    selectedCustomer: Customer;
+    customerList: Customer[];
 
     getAll(): void {
-        //this.customerList = this.customerService.getCustomers();
-        this.customerService.getCustomers().subscribe(customerList => this.customerList = customerList);
+        this.customerService.getAll().then(customerList => this.customerList = customerList);
     }
     saveCustomer(customer: Customer): void {
-        this.customerService.addCustomer(customer);
+        this.customerService.save(customer).then(customer => this.customerList.push(customer));
     };
-    removeCustomer(id: number): void {
-        this.customerService.removeCustomer(id);
+    removeCustomer(customer: Customer, event:any): void {
+        event.stopPropagation();
+        this.customerService.delete(customer)
+            .then(res => {
+                this.customerList = this.customerList.filter(h => h !== customer);
+                if (this.customerEdit === customer) { this.customerEdit = null; }
+            });
     };
 
-    selectCustomer(customer: ICustomer) {
+    selectCustomer(customer: Customer) {
         if (customer.id == this.customerEdit.id) {
             this.customerEdit = new Customer();
         } else {
-            this.customerEdit = <ICustomer>JSON.parse(JSON.stringify(customer));
+            this.customerEdit = <Customer>JSON.parse(JSON.stringify(customer));
         }
     }
 

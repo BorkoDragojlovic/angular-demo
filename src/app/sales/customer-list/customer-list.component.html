@@ -15,6 +15,6 @@
 <form>
     First name: <input type="text" [(ngModel)]="customerEdit.firstName" name="firstName"><br> Last name: <input type="text" [(ngModel)]="customerEdit.lastName" name="lastName"><br>
     <button (click)="saveCustomer(customerEdit)">Add customer</button>
-    <button (click)="removeCustomer(customerEdit.id)">Remove</button>
+    <button (click)="removeCustomer(customerEdit, $event)">Remove</button>
 </form>
 <mym-app [customer]="customerEdit"></mym-app>
