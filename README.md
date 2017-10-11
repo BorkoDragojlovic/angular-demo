@@ -16,7 +16,7 @@ Older versions could produce errors.
 
 Clone this repo.
 ```shell
-https://github.com/BorkoDragojlovic/angular-demo.git
+git clone https://github.com/BorkoDragojlovic/angular-demo.git
 cd angular-demo
 ```
 
