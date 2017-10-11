@@ -4,13 +4,14 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { DxVectorMapModule } from 'devextreme-angular';
 import { projection } from 'devextreme/viz/vector_map/projection';
 
-import { FloorPlanService } from '../services/floor-plan.service';
+import { RoomService } from '../services/room.service';
+import { BuildingService } from '../services/building.service';
 import { FeatureCollection } from '../shared/feature-collection.model';
 import { Customer } from '../../sales/shared/customer.model';
 
 @Component({
     selector: 'mym-app',
-    providers: [ FloorPlanService ],
+    providers: [ RoomService, BuildingService ],
     templateUrl: './floor-plan.component.html',
     styleUrls: ['./floor-plan.component.css']
 })
@@ -22,9 +23,9 @@ export class FloorPlanComponent {
     elementsLayers: any;
     @Input() customer: Customer;
 
-    constructor(service: FloorPlanService) {
-        this.roomsData = service.getRoomsData();
-        this.buildingData = service.getBuildingData();
+    constructor(roomService: RoomService, buildingService: BuildingService) {
+        roomService.getById(1).then(roomsData => this.roomsData = roomsData);
+        buildingService.getById(1).then(buildingData => this.buildingData = buildingData);
         this.projection = projection({
             to: function (coordinates) {
                 return [coordinates[0] / 100, coordinates[1] / 100];

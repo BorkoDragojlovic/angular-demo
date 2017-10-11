@@ -1,7 +1,7 @@
-import {IProduct} from './product.interface';
-export class Product implements IProduct{ 
+import { HasId } from '../../shared/has-id.interface'
+export class Product implements HasId{ 
    constructor ( 
-      public productID: number, 
+      public id: number, 
       public productName: string 
    ) {  } 
 }

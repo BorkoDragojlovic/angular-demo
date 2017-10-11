@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { CustomerService } from '../services/customer.service'
 import { Customer } from '../shared/customer.model';
-import { ICustomer } from '../shared/customer.interface';
 import { FloorPlanComponent } from '../../floor-plans/floor-plan/floor-plan.component'
 @Component({
     selector: 'my-app',
@@ -19,16 +18,30 @@ export class CustomerList {
         this.customerService.getAll().then(customerList => this.customerList = customerList);
     }
     saveCustomer(customer: Customer): void {
-        this.customerService.save(customer).then(customer => this.customerList.push(customer));
-    };
-    removeCustomer(customer: Customer, event:any): void {
-        event.stopPropagation();
+        if (!customer.id) {
+            this.customerService.create(customer)
+                .then(customer => {
+                    this.customerList.push(customer)
+                    this.selectCustomer(customer);
+                });
+        } else {
+            this.customerService.update(customer)
+                .then(customer => {
+                    var customerIndex = this.customerList.map(function (it) { return it.id; }).indexOf(customer.id);
+                    this.customerList[customerIndex] = customer;
+                    this.customerEdit = <Customer>JSON.parse(JSON.stringify(customer));
+                });
+        }
+
+    }
+    removeCustomer(customer: Customer): void {
         this.customerService.delete(customer)
             .then(res => {
-                this.customerList = this.customerList.filter(h => h !== customer);
-                if (this.customerEdit === customer) { this.customerEdit = null; }
+                var removeIndex = this.customerList.map(function (it) { return it.id; }).indexOf(customer.id);
+                this.customerList.splice(removeIndex, 1);
+                if (this.customerEdit === customer) { this.customerEdit = new Customer(); }
             });
-    };
+    }
 
     selectCustomer(customer: Customer) {
         if (customer.id == this.customerEdit.id) {
@@ -36,6 +49,10 @@ export class CustomerList {
         } else {
             this.customerEdit = <Customer>JSON.parse(JSON.stringify(customer));
         }
+    }
+
+    clear() { 
+        this.customerEdit = new Customer();
     }
 
     ngOnInit(): void {

@@ -7,13 +7,10 @@ import { HttpModule } from '@angular/http';
 import { SalesModule } from './sales/sales.module';
 import { FloorPlanModule } from './floor-plans/floor-plan.module';
 import { SharedModule } from './shared/shared.module';
-//import { HttpClientModule } from '@angular/common/http';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './mock-data/in-memory-data.service';
 
-const appRoutes: Routes = [
-  //{ path: 'Product', component: Appproduct }
-];
+const appRoutes: Routes = [];
 
 @NgModule({
   imports: [BrowserModule,

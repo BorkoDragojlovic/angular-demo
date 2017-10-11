@@ -1,11 +1,11 @@
-<div>Test customer </div>
+<div>Select customer to view his room </div>
 <table class="table">
     <tr>
         <th>#</th>
         <th>First Name</th>
         <th>Last Name</th>
     </tr>
-    <tr *ngFor="let customer of customerList" (click)="selectCustomer(customer)" [style.background-color]="customerEdit.id == customer.id ? 'cyan' : ''">
+    <tr *ngFor="let customer of customerList" (click)="selectCustomer(customer)" [ngClass]="{'selected': customerEdit.id == customer.id}">
         <td>{{customer.id}}</td>
         <td>{{customer.firstName}}</td>
         <td>{{customer.lastName}}</td>
@@ -13,8 +13,11 @@
 </table>
 
 <form>
-    First name: <input type="text" [(ngModel)]="customerEdit.firstName" name="firstName"><br> Last name: <input type="text" [(ngModel)]="customerEdit.lastName" name="lastName"><br>
-    <button (click)="saveCustomer(customerEdit)">Add customer</button>
-    <button (click)="removeCustomer(customerEdit, $event)">Remove</button>
+    <div>First name: <input type="text" [(ngModel)]="customerEdit.firstName" name="firstName"></div>
+    <div>Last name: <input type="text" [(ngModel)]="customerEdit.lastName" name="lastName"></div>
+    <button [disabled]="!customerEdit.firstName || !customerEdit.lastName" (click)="saveCustomer(customerEdit)">Save</button>
+    <button (click)="removeCustomer(customerEdit)">Remove</button>
+    <button (click)="clear()">Clear</button>
 </form>
+<br>
 <mym-app [customer]="customerEdit"></mym-app>

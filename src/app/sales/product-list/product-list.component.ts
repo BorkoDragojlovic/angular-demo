@@ -1,10 +1,6 @@
 import { Component } from '@angular/core';
 import { Product } from '../shared/product.model';
 import { ProductService } from '../services/products.service';
-//import { appService } from './app.service';
-import { Http, Response } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
 
 @Component({
     selector: 'my-app',
